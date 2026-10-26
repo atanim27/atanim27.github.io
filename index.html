@@ -1,7 +1,655 @@
-<!DOCTYPE html>
 
-<html>
-  <body>
-     Ahnaf was here.
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ahnaf T. — Senior at Niagara University. Personal portfolio, projects, and skills.">
+    <title>Ahnaf T. | Personal Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #09090f;
+            --surface: #11111b;
+            --text: #f4f4fb;
+            --muted: #9999ad;
+            --accent: #a78bfa;
+            --accent2: #67e8f9;
+            --border: rgba(255,255,255,0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1100px, 88%);
+            margin: auto;
+        }
+
+        /* Navigation */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(9,9,15,0.78);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            width: min(1100px, 88%);
+            margin: auto;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 130px 0 90px;
+            overflow: hidden;
+        }
+
+        .glow {
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            background: #7c3aed;
+            filter: blur(170px);
+            opacity: 0.18;
+            border-radius: 50%;
+            top: 10%;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            color: var(--accent2);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.15;
+        }
+
+        h1 {
+            font-size: clamp(3.5rem, 9vw, 7rem);
+            letter-spacing: -5px;
+            max-width: 850px;
+            margin-bottom: 25px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(100deg, #c4b5fd, #67e8f9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 570px;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.25s ease;
+        }
+
+        .btn-primary {
+            background: #c4b5fd;
+            color: #11111b;
+        }
+
+        .btn-primary:hover {
+            background: #ddd6fe;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .scroll-note {
+            margin-top: 70px;
+            color: #66667b;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+        }
+
+        /* Shared sections */
+
+        section {
+            padding: 100px 0;
+            scroll-margin-top: 75px;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: clamp(2.1rem, 5vw, 3.4rem);
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .section-intro {
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 45px;
+        }
+
+        /* About */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 55px;
+            align-items: start;
+        }
+
+        .about-copy p {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .info-card {
+            background: linear-gradient(145deg, #171725, #101019);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .info-row {
+            padding: 17px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--muted);
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-weight: 600;
+        }
+
+        /* Skills */
+
+        .skills {
+            background: #0d0d15;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 25px;
+            transition: 0.25s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(167,139,250,0.6);
+        }
+
+        .skill-icon {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Projects */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            background: linear-gradient(145deg, #151522, #0e0e16);
+            padding: 30px;
+            border-radius: 15px;
+            transition: 0.25s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(103,232,249,0.5);
+            transform: translateY(-5px);
+        }
+
+        .project-number {
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 6px;
+            background: rgba(167,139,250,0.1);
+            color: #c4b5fd;
+            font-size: 0.75rem;
+            margin: 3px 3px 3px 0;
+        }
+
+        /* Contact */
+
+        .contact-box {
+            text-align: center;
+            padding: 65px 25px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background:
+                radial-gradient(ellipse at top, rgba(124,58,237,0.15), transparent 65%),
+                var(--surface);
+        }
+
+        .contact-box .section-intro {
+            margin: 0 auto 30px;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 25px 0;
+            color: var(--muted);
+            font-size: 0.83rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 700px) {
+            .nav-inner {
+                height: 66px;
+            }
+
+            .nav-links {
+                gap: 13px;
+                font-size: 0.78rem;
+            }
+
+            .logo {
+                font-size: 1.15rem;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .about-grid,
+            .skill-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 75px 0;
+            }
+
+            .scroll-note {
+                margin-top: 45px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="#home" class="logo">Ahnaf<span>.</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="glow"></div>
+
+            <div class="container">
+                <p class="eyebrow">Niagara University · Class of 2027</p>
+
+                <h1>
+                    Hi, I'm Ahnaf.<br>
+                    <span class="gradient-text">I build what's next.</span>
+                </h1>
+
+                <p class="hero-description">
+                    I'm a senior at Niagara University, passionate about
+                    technology, learning new things, and turning ideas into
+                    meaningful projects.
+                </p>
+
+                <div class="buttons">
+                    <a href="#projects" class="btn btn-primary">Explore My Work ↗</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+
+                <p class="scroll-note">SCROLL TO EXPLORE ↓</p>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-copy">
+                        <p class="section-label">01 / About Me</p>
+                        <h2 class="section-title">
+                            A little about <span class="gradient-text">my journey.</span>
+                        </h2>
+
+                        <p>
+                            I'm Ahnaf T., a senior at Niagara University.
+                            I'm focused on developing my skills, exploring
+                            new opportunities, and preparing for the next
+                            chapter of my professional journey.
+                        </p>
+
+                        <p>
+                            I enjoy solving problems, learning by doing,
+                            and building things that combine creativity
+                            with technology.
+                        </p>
+
+                        <p>
+                            I'm always open to connecting with new people,
+                            collaborating on projects, and discovering
+                            opportunities to grow.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-row">
+                            <p class="info-label">NAME</p>
+                            <p class="info-value">Ahnaf T.</p>
+                        </div>
+
+                        <div class="info-row">
+                            <p class="info-label">UNIVERSITY</p>
+                            <p class="info-value">Niagara University</p>
+                        </div>
+
+                        <div class="info-row">
+                            <p class="info-label">STATUS</p>
+                            <p class="info-value">Senior Student</p>
+                        </div>
+
+                        <div class="info-row">
+                            <p class="info-label">CURRENT FOCUS</p>
+                            <p class="info-value">Learning · Building · Growing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="skills" id="skills">
+            <div class="container">
+                <p class="section-label">02 / What I Do</p>
+                <h2 class="section-title">Areas I'm <span class="gradient-text">exploring.</span></h2>
+
+                <p class="section-intro">
+                    A growing toolkit of skills and interests that I'm
+                    developing through coursework and hands-on experience.
+                </p>
+
+                <div class="skill-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">⌨️</div>
+                        <h3>Programming</h3>
+                        <p>Writing code, solving problems, and learning through practical projects.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">🌐</div>
+                        <h3>Web Technology</h3>
+                        <p>Exploring the tools used to create modern websites and digital experiences.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">🧩</div>
+                        <h3>Problem Solving</h3>
+                        <p>Breaking down challenges and finding practical, thoughtful solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="container">
+                <p class="section-label">03 / Selected Work</p>
+                <h2 class="section-title">Things I'm <span class="gradient-text">working on.</span></h2>
+
+                <p class="section-intro">
+                    A space for projects, experiments, and things I build
+                    as I continue learning.
+                </p>
+
+                <div class="project-grid">
+                    <article class="project-card">
+                        <p class="project-number">PROJECT / 01</p>
+                        <h3>Personal Portfolio</h3>
+                        <p>
+                            A responsive personal website designed to introduce
+                            who I am, highlight my interests, and share my work.
+                        </p>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">GitHub Pages</span>
+                    </article>
+
+                    <article class="project-card">
+                        <p class="project-number">PROJECT / 02</p>
+                        <h3>Python Experiments</h3>
+                        <p>
+                            A collection of programming exercises and experiments
+                            focused on learning Python and building technical skills.
+                        </p>
+                        <span class="tag">Python</span>
+                        <span class="tag">Problem Solving</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-box">
+                    <p class="section-label">04 / Contact</p>
+
+                    <h2 class="section-title">
+                        Let's connect<span class="gradient-text">.</span>
+                    </h2>
+
+                    <p class="section-intro">
+                        Have an opportunity, an interesting project, or just
+                        want to connect? I'd love to hear from you.
+                    </p>
+
+                    <div class="buttons" style="justify-content:center;">
+                        <!-- Replace the email below with your real email -->
+                        <a href="mailto:YOUR_EMAIL@example.com"
+                           class="btn btn-primary">
+                            Say Hello ↗
+                        </a>
+
+                        <!-- Replace # with your LinkedIn profile URL -->
+                        <a href="https://www.linkedin.com/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-outline">
+                            LinkedIn ↗
+                        </a>
+
+                        <!-- Replace # with your GitHub profile URL -->
+                        <a href="https://github.com/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-outline">
+                            GitHub ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <p>© <span id="year"></span> Ahnaf T. All rights reserved.</p>
+            <p>Designed with curiosity. Built for what's next.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
 </html>
+
